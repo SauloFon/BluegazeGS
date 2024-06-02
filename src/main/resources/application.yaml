@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: demo
+
+server:
+  port: ${SERVER_PORT}
+
+springdoc:
+  swagger-ui:
+    path: /docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, openapi, swagger-ui
+
+  endpoint:
+    health:
+      show-details: ALWAYS

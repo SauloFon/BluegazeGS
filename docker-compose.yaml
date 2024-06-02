@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+
+  blue-eyes-app:
+    image: 'blue-eyes:latest'
+    ports:
+      - "8080:8080"
+    build:
+      context: .
+    container_name: blue-eyes-app
+    depends_on:
+      blue-eyes-db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://blue-eyes-db:5432/blue-eyes-db
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=user
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SERVER_PORT=8080
+
+  blue-eyes-db:
+    image: 'postgres:14.4-alpine'
+    container_name: blue-eyes-db
+    volumes:
+      - ./.docker/postgres_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d/:ro
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user
+      - POSTGRES_DB=blue-eyes-db
+      - PGPORT=5432
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+    healthcheck:
+      test: pg_isready
+      interval: 1s
+      timeout: 3s
+      retries: 10
+
+
+volumes:
+  postgres_data:
+    driver: local
+
+
+networks:
+  default:
+    name: blueeyes
+    external: false
