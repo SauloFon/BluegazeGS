@@ -3,18 +3,18 @@ package com.blueeyes.demo.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.Instant;
 
 @Entity
 @Getter
 @Setter
 @Table
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder
 public class Users {
     @Id
     private Long id;
@@ -24,4 +24,8 @@ public class Users {
     private String email;
     @OneToMany
     private Address address;
+    @FutureOrPresent
+    private Instant createdAt;
+    @FutureOrPresent
+    private Instant updatedAt;
 }

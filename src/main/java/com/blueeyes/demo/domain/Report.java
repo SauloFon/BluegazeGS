@@ -1,10 +1,12 @@
 package com.blueeyes.demo.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,15 +17,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Address {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Report {
+    @Id
     private Long id;
+    @OneToMany
+    private Address address;
+    @OneToMany
+    private ReportType type;
     @NotBlank
-    private String street;
-    @NotBlank
-    private String city;
-    @NotBlank
-    private String state;
-    @NotBlank
-    private String zip;
+    @Size(max = 255)
+    private String description;
 }
