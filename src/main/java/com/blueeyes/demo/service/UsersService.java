@@ -36,4 +36,8 @@ public class UsersService {
         return usersRepository.findAll();
     }
 
+    public void delete(Long id) {
+        Users users = usersRepository.findById(id).orElseThrow(() -> new UsersNotFoundException("Not Found User with id: " + id));
+        usersRepository.delete(users);
+    }
 }

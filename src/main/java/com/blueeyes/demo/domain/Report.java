@@ -1,9 +1,6 @@
 package com.blueeyes.demo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -20,11 +17,11 @@ import lombok.Setter;
 public class Report {
     @Id
     private Long id;
-    @OneToMany
+    @ManyToOne
     private Address address;
-    @OneToMany
+    @ManyToOne
     private ReportType type;
     @NotBlank
-    @Size(max = 255)
+    @Size(min = 3, max = 255)
     private String description;
 }
