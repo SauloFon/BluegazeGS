@@ -40,7 +40,8 @@ public class Users  extends EntityModel<Users> {
         return EntityModel.of(
                 this,
                 linkTo(methodOn(UsersController.class).findById(id)).withSelfRel(),
-                linkTo(methodOn(UsersController.class).delete(id)).withRel("delete")
+                linkTo(methodOn(UsersController.class).delete(id)).withRel("delete"),
+                linkTo(methodOn(UsersController.class).findAll()).withSelfRel()
         );
     }
 }

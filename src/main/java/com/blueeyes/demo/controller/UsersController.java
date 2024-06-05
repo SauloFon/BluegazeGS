@@ -23,14 +23,14 @@ public class UsersController {
     @PostMapping
     public ResponseEntity<EntityModel<Users>> save(@Valid UsersDTO usersDTO){
         Users users = usersService.save(usersDTO);
-        return ResponseEntity.ok(users.toEntityModel());
+        return ResponseEntity.created(users.toEntityModel().getRequiredLink("self").toUri())
+                .body(users.toEntityModel());
     }
 
     @GetMapping("/{id}")
     public  ResponseEntity<EntityModel<Users>> findById(@PathVariable Long id){
         Users users = usersService.findById(id);
-        return ResponseEntity .created(users.toEntityModel().getRequiredLink("self").toUri())
-                .body(users.toEntityModel());
+        return ResponseEntity.ok(users.toEntityModel());
     }
 
     @GetMapping

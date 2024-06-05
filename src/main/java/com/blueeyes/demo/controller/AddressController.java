@@ -1,10 +1,12 @@
 package com.blueeyes.demo.controller;
 
 import com.blueeyes.demo.domain.Address;
+import com.blueeyes.demo.domain.Report;
 import com.blueeyes.demo.service.AddressService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +20,16 @@ public class AddressController {
     private final AddressService addressService;
 
     @PostMapping
-    public ResponseEntity<Address> save(@Valid Address address){
-        Address addressSave = addressService.save(address);
-        return ResponseEntity.ok(addressSave);
+    public ResponseEntity<EntityModel<Address>> save(@Valid Address address){
+        Address savedAddress = addressService.save(address);
+        return ResponseEntity.created(savedAddress.toEntityModel().getRequiredLink("self").toUri())
+                .body(savedAddress.toEntityModel());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Address> findById(@PathVariable Long id){
+    public  ResponseEntity<EntityModel<Address>> findById(@PathVariable Long id){
         Address address = addressService.findById(id);
-        return ResponseEntity.ok(address);
+        return ResponseEntity.ok(address.toEntityModel());
     }
 
     @GetMapping
