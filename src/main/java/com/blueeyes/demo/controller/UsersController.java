@@ -20,7 +20,7 @@ public class UsersController {
     private final UsersService usersService;
 
     @PostMapping
-    public ResponseEntity<EntityModel<UserBlue>> save(@Valid @RequestBody UsersDTO usersDTO){
+    public ResponseEntity<EntityModel<UserBlue>> save(@RequestBody @Valid UsersDTO usersDTO){
         UserBlue userBlue = usersService.save(usersDTO);
         return ResponseEntity.ok(userBlue.toEntityModel());
     }
