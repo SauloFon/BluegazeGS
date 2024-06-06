@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 
 import java.time.Instant;
@@ -42,7 +43,7 @@ public class Users extends EntityModel<Users> {
                 this,
                 linkTo(methodOn(UsersController.class).findById(id)).withSelfRel(),
                 linkTo(methodOn(UsersController.class).delete(id)).withRel("delete"),
-                linkTo(methodOn(UsersController.class).findAll()).withSelfRel()
+                linkTo(methodOn(UsersController.class).findAll(Pageable.unpaged())).withSelfRel()
         );
     }
 }
