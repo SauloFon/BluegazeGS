@@ -22,8 +22,7 @@ public class AddressController {
     @PostMapping
     public ResponseEntity<EntityModel<Address>> save(@Valid @RequestBody Address address){
         Address savedAddress = addressService.save(address);
-        return ResponseEntity.created(savedAddress.toEntityModel().getRequiredLink("self").toUri())
-                .body(savedAddress.toEntityModel());
+        return ResponseEntity.ok(savedAddress.toEntityModel());
     }
 
     @GetMapping("/{id}")

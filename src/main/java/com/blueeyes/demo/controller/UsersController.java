@@ -25,8 +25,7 @@ public class UsersController {
     @PostMapping
     public ResponseEntity<EntityModel<Users>> save(@Valid @RequestBody UsersDTO usersDTO){
         Users users = usersService.save(usersDTO);
-        return ResponseEntity.created(users.toEntityModel().getRequiredLink("self").toUri())
-                .body(users.toEntityModel());
+        return ResponseEntity.ok(users.toEntityModel());
     }
 
     @GetMapping("/{id}")
@@ -36,7 +35,7 @@ public class UsersController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Users>> findAll(@RequestParam Pageable pageable){
+    public ResponseEntity<Page<Users>> findAll(Pageable pageable){
         Page<Users> users = usersService.findAll(pageable);
         return ResponseEntity.ok(users);
     }

@@ -24,8 +24,7 @@ public class ReportsController {
     @PostMapping
     public ResponseEntity<EntityModel<Report>> save(@Valid @RequestBody Report report){
         Report savedReport = reportService.save(report);
-        return ResponseEntity.created(savedReport.toEntityModel().getRequiredLink("self").toUri())
-                .body(savedReport.toEntityModel());
+        return ResponseEntity.ok(savedReport.toEntityModel());
     }
 
     @GetMapping("/{id}")

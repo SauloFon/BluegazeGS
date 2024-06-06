@@ -3,6 +3,8 @@ package com.blueeyes.demo.domain;
 import com.blueeyes.demo.controller.ReportTypeController;
 import com.blueeyes.demo.controller.UsersController;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -20,7 +22,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReportType extends EntityModel<ReportType> {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
