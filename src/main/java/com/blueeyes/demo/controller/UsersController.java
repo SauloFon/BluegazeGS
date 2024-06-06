@@ -6,6 +6,8 @@ import com.blueeyes.demo.service.UsersService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,7 @@ public class UsersController {
     private final UsersService usersService;
 
     @PostMapping
-    public ResponseEntity<EntityModel<Users>> save(@Valid UsersDTO usersDTO){
+    public ResponseEntity<EntityModel<Users>> save(@Valid @RequestBody UsersDTO usersDTO){
         Users users = usersService.save(usersDTO);
         return ResponseEntity.created(users.toEntityModel().getRequiredLink("self").toUri())
                 .body(users.toEntityModel());
@@ -34,8 +36,8 @@ public class UsersController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Users>> findAll(){
-        List<Users> users = usersService.findAll();
+    public ResponseEntity<Page<Users>> findAll(@RequestParam Pageable pageable){
+        Page<Users> users = usersService.findAll(pageable);
         return ResponseEntity.ok(users);
     }
 

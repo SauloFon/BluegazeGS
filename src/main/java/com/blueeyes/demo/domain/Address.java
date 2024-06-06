@@ -1,5 +1,6 @@
 package com.blueeyes.demo.domain;
 
+import com.blueeyes.demo.controller.AddressController;
 import com.blueeyes.demo.controller.UsersController;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,8 +34,8 @@ public class Address extends EntityModel<Address> {
     public EntityModel<Address> toEntityModel() {
         return EntityModel.of(
                 this,
-                linkTo(methodOn(UsersController.class).findById(id)).withSelfRel(),
-                linkTo(methodOn(UsersController.class).findAll()).withSelfRel()
+                linkTo(methodOn(AddressController.class).findById(id)).withSelfRel(),
+                linkTo(methodOn(AddressController.class).findAll()).withSelfRel()
         );
     }
 }

@@ -1,5 +1,6 @@
 package com.blueeyes.demo.domain;
 
+import com.blueeyes.demo.controller.ReportsController;
 import com.blueeyes.demo.controller.UsersController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -34,8 +35,8 @@ public class Report extends EntityModel<Report> {
     public EntityModel<Report> toEntityModel() {
         return EntityModel.of(
                 this,
-                linkTo(methodOn(UsersController.class).findById(id)).withSelfRel(),
-                linkTo(methodOn(UsersController.class).findAll()).withSelfRel()
+                linkTo(methodOn(ReportsController.class).findById(id)).withSelfRel(),
+                linkTo(methodOn(ReportsController.class).findAll()).withSelfRel()
         );
     }
 }

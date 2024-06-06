@@ -21,7 +21,7 @@ public class ReportTypeController {
     private final ReportTypeService reportTypeService;
 
     @PostMapping
-    public ResponseEntity<EntityModel<ReportType>> save(@Valid ReportType reportType){
+    public ResponseEntity<EntityModel<ReportType>> save(@Valid @RequestBody ReportType reportType){
         ReportType savedReportType = reportTypeService.save(reportType);
         return ResponseEntity.created(savedReportType.toEntityModel().getRequiredLink("self").toUri())
                 .body(savedReportType.toEntityModel());

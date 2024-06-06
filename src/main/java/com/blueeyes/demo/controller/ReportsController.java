@@ -22,7 +22,7 @@ public class ReportsController {
     private final ReportService reportService;
 
     @PostMapping
-    public ResponseEntity<EntityModel<Report>> save(@Valid Report report){
+    public ResponseEntity<EntityModel<Report>> save(@Valid @RequestBody Report report){
         Report savedReport = reportService.save(report);
         return ResponseEntity.created(savedReport.toEntityModel().getRequiredLink("self").toUri())
                 .body(savedReport.toEntityModel());

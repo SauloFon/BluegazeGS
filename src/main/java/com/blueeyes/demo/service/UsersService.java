@@ -6,6 +6,8 @@ import com.blueeyes.demo.exceptions.UsersNotFoundException;
 import com.blueeyes.demo.repository.UsersRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -32,8 +34,8 @@ public class UsersService {
         return usersRepository.findById(id).orElseThrow(() -> new UsersNotFoundException("Not Found User with id: " + id));
     }
 
-    public List<Users> findAll() {
-        return usersRepository.findAll();
+    public Page<Users> findAll(Pageable pageable) {
+        return usersRepository.findAll(pageable);
     }
 
     public void delete(Long id) {

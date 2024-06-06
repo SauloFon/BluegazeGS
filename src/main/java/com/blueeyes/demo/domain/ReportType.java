@@ -1,5 +1,6 @@
 package com.blueeyes.demo.domain;
 
+import com.blueeyes.demo.controller.ReportTypeController;
 import com.blueeyes.demo.controller.UsersController;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,14 +22,13 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class ReportType extends EntityModel<ReportType> {
     @Id
     private Long id;
-    @NotBlank
     private String name;
 
     public EntityModel<ReportType> toEntityModel() {
         return EntityModel.of(
                 this,
-                linkTo(methodOn(UsersController.class).findById(id)).withSelfRel(),
-                linkTo(methodOn(UsersController.class).findAll()).withSelfRel()
+                linkTo(methodOn(ReportTypeController.class).findById(id)).withSelfRel(),
+                linkTo(methodOn(ReportTypeController.class).findAll()).withSelfRel()
         );
     }
 

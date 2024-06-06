@@ -20,8 +20,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Setter
 @Table
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Users  extends EntityModel<Users> {
+public class Users extends EntityModel<Users> {
     @Id
     private Long id;
     @NotBlank

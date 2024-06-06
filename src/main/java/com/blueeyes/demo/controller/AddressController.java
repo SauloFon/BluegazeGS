@@ -20,7 +20,7 @@ public class AddressController {
     private final AddressService addressService;
 
     @PostMapping
-    public ResponseEntity<EntityModel<Address>> save(@Valid Address address){
+    public ResponseEntity<EntityModel<Address>> save(@Valid @RequestBody Address address){
         Address savedAddress = addressService.save(address);
         return ResponseEntity.created(savedAddress.toEntityModel().getRequiredLink("self").toUri())
                 .body(savedAddress.toEntityModel());
