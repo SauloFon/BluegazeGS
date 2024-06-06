@@ -1,10 +1,7 @@
 package com.blueeyes.demo.controller;
 
 import com.blueeyes.demo.domain.Report;
-import com.blueeyes.demo.domain.Users;
-import com.blueeyes.demo.dtos.UsersDTO;
 import com.blueeyes.demo.service.ReportService;
-import com.blueeyes.demo.service.UsersService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

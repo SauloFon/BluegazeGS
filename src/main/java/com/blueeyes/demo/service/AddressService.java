@@ -1,17 +1,12 @@
 package com.blueeyes.demo.service;
 
 import com.blueeyes.demo.domain.Address;
-import com.blueeyes.demo.domain.Users;
-import com.blueeyes.demo.dtos.UsersDTO;
 import com.blueeyes.demo.exceptions.AddressNotFoundException;
-import com.blueeyes.demo.exceptions.UsersNotFoundException;
 import com.blueeyes.demo.repository.AddressRepository;
-import com.blueeyes.demo.repository.UsersRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 
 @Service

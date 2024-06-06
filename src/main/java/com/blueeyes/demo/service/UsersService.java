@@ -1,6 +1,6 @@
 package com.blueeyes.demo.service;
 
-import com.blueeyes.demo.domain.Users;
+import com.blueeyes.demo.domain.UserBlue;
 import com.blueeyes.demo.dtos.UsersDTO;
 import com.blueeyes.demo.exceptions.UsersNotFoundException;
 import com.blueeyes.demo.repository.UsersRepository;
@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.List;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -19,27 +18,26 @@ public class UsersService {
 
     private final UsersRepository usersRepository;
 
-    public Users save(UsersDTO dto) {
-        Users users = Users.builder()
+    public UserBlue save(UsersDTO dto) {
+        UserBlue userBlue = UserBlue.builder()
                 .username(dto.username())
                 .email(dto.email())
-                .address(dto.address())
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
                 .build();
-        return usersRepository.save(users);
+        return usersRepository.save(userBlue);
     }
 
-    public Users findById(Long id) {
+    public UserBlue findById(Long id) {
         return usersRepository.findById(id).orElseThrow(() -> new UsersNotFoundException("Not Found User with id: " + id));
     }
 
-    public Page<Users> findAll(Pageable pageable) {
+    public Page<UserBlue> findAll(Pageable pageable) {
         return usersRepository.findAll(pageable);
     }
 
     public void delete(Long id) {
-        Users users = usersRepository.findById(id).orElseThrow(() -> new UsersNotFoundException("Not Found User with id: " + id));
-        usersRepository.delete(users);
+        UserBlue userBlue = usersRepository.findById(id).orElseThrow(() -> new UsersNotFoundException("Not Found User with id: " + id));
+        usersRepository.delete(userBlue);
     }
 }
