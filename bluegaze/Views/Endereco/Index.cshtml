@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Lista de Enderecos";
+}
+<div class="text-center">
+
+
+
+    <table class="table">
+
+
+        <h1 class="display-4">Lista de Enderecos</h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-primary" role="button" asp-asp-controller="Enderecos" asp-action="CriarEnderecos">Adcionar novo endereco</a>
+        </div>
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Rua</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Cep</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>mdo</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a role="button" class="btn btn-primary" asp-controller="Enderecos" asp-action="EditarEndereco">Editar</a>
+                        <a role="button" class="btn btn-danger" asp-controller="Enderecos" asp-action="ApagarEndereco">Apagar</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>fat</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a role="button" class="btn btn-primary" asp-controller="Enderecos" asp-action="EditarEndereco">Editar</a>
+                        <a role="button" class="btn btn-danger" asp-controller="Enderecos" asp-action="ApagarEndereco">Apagar</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>fat</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a role="button" class="btn btn-primary" asp-controller="Enderecos" asp-action="EditarEndereco">Editar</a>
+                        <a role="button" class="btn btn-danger" asp-controller="Enderecos" asp-action="ApagarEndereco">Apagar</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </tbody>
+</div>
+
+</table>
